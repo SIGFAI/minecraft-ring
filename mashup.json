@@ -1,0 +1,175 @@
+{
+  "id": "sigf/minecraft-ring",
+  "version": "0.3.0",
+  "name": "Minecraft Ring",
+  "tagline": "Minecraft movement, building and combat in the Lands Between: real Minecraft drawn into Elden Ring's frame (offline).",
+  "how_to_play": [
+    "Explore the Lands Between with Minecraft's controls: build with your blocks and inventory, and fight Elden Ring's enemies with Minecraft weapons.",
+    "Press Play: Minecraft starts first, then Elden Ring offline. Choose Continue in Elden Ring; Minecraft opens its bridge world by itself.",
+    "WASD, mouse, Space, Shift move; mouse buttons break/attack and place/use; E inventory; F5 camera; R uses doors, levers, items and graces.",
+    "F8 hands control to Elden Ring for its menus and back. The first world is creative: type /gamemode survival to take enemy hits."
+  ],
+  "kind": "passthrough",
+  "games": [
+    {
+      "game": "eldenring",
+      "role": "host",
+      "label": "Elden Ring",
+      "engine": "Elden Ring (FromSoftware, D3D12) + dinput8.dll proxy and erbridge_core.dll (C++, MinHook)",
+      "apps": {
+        "steam": "1245620"
+      },
+      "runtime": "App Ver. 1.17.1, eldenring.exe 2.7.1.0 (checked by the author)"
+    },
+    {
+      "game": "minecraft",
+      "role": "guest",
+      "label": "Minecraft",
+      "engine": "Minecraft Java 1.21.1 + Fabric mod erbridge (Java)",
+      "mc": "1.21.1",
+      "loader": "fabric@0.19.5",
+      "java": "21"
+    }
+  ],
+  "requires": [
+    {
+      "id": "fabric-loader",
+      "version": "0.19.5"
+    },
+    {
+      "id": "fabric-api",
+      "version": "0.116.17+1.21.1",
+      "note": "in the Minecraft pack (downloaded from Modrinth)"
+    }
+  ],
+  "install": [
+    {
+      "game": "eldenring",
+      "strategy": "game-dir-snapshot",
+      "files": [
+        {
+          "src": "minecraft-ring-eldenring.zip",
+          "dst": "{game}",
+          "unpack": true,
+          "contents": [
+            {
+              "path": "Game/dinput8.dll",
+              "sha256": "a5f76a4cf7036e6f7b63b0643623a14becfeea8a56190b01fde7fd8fe7fdecf9"
+            },
+            {
+              "path": "Game/erbridge/erbridge_core.dll",
+              "sha256": "3bf32b117bfa3015012a35e8cc67c0d31f23bcfc4c6ec8f598b86ef2e6e31f63"
+            },
+            {
+              "path": "Game/MinecraftRing/LICENSE.txt",
+              "sha256": "1f44284b48a2a6ae64c627e595d67f6134a6bfee1a5ae69a46cd4fdf28d6f960"
+            },
+            {
+              "path": "Game/MinecraftRing/MinHook-LICENSE.txt",
+              "sha256": "d5c2224982b0b95a16b098a561335fa93f3eaf4d0aa964b7843edb986df78dc8"
+            },
+            {
+              "path": "Game/MinecraftRing/THIRD_PARTY_NOTICES.md",
+              "sha256": "8620759a7e09fb94564929f914268328a66e429f255e9cf9dd3d13a74e5f4a8d"
+            },
+            {
+              "path": "Game/mr-launch.exe",
+              "sha256": "96a8cb72bebdb4b3cf786069d000cf13e6a79a5c525dfebaa78f7480790f0fff"
+            },
+            {
+              "path": "Game/steam_appid.txt",
+              "sha256": "fe16bb1876de8709bc47cad716c50c8b4b4e62a1a4c159c72fee466986678047"
+            }
+          ],
+          "url": "https://github.com/SIGFAI/minecraft-ring/releases/download/v0.3.0/minecraft-ring-eldenring.zip",
+          "sha256": "6a9f843c48532b9821e79be12090389058b5a2b73c2c2d018b426605548a79b7",
+          "size": 1145856
+        }
+      ]
+    },
+    {
+      "game": "minecraft",
+      "strategy": "mrpack",
+      "jvm_args": [
+        "-Xmx3G"
+      ],
+      "pack": {
+        "src": "minecraft-ring.mrpack",
+        "url": "https://github.com/SIGFAI/minecraft-ring/releases/download/v0.3.0/minecraft-ring.mrpack",
+        "sha256": "987e26f2f14c8c1ffc2f06aac3e7d358d3f7886fea4aedfec656606f67d79788",
+        "size": 231350
+      }
+    }
+  ],
+  "launch": [
+    {
+      "game": "minecraft"
+    },
+    {
+      "game": "eldenring",
+      "exe": "Game/mr-launch.exe",
+      "args": []
+    }
+  ],
+  "files": [
+    {
+      "name": "minecraft-ring-eldenring.zip",
+      "url": "https://github.com/SIGFAI/minecraft-ring/releases/download/v0.3.0/minecraft-ring-eldenring.zip",
+      "sha256": "6a9f843c48532b9821e79be12090389058b5a2b73c2c2d018b426605548a79b7",
+      "size": 1145856
+    },
+    {
+      "name": "minecraft-ring.mrpack",
+      "url": "https://github.com/SIGFAI/minecraft-ring/releases/download/v0.3.0/minecraft-ring.mrpack",
+      "sha256": "987e26f2f14c8c1ffc2f06aac3e7d358d3f7886fea4aedfec656606f67d79788",
+      "size": 231350
+    }
+  ],
+  "source": {
+    "repo": "https://github.com/siddoff/Minecraft-Ring",
+    "license": "MIT AND BSD-2-Clause",
+    "upstream_license": "MIT",
+    "commit": "711015afa67ab25c7b9597c68038718d1cef322e",
+    "hosted": "https://github.com/SIGFAI/minecraft-ring",
+    "based_on": "https://github.com/justbustin/minecraft-crossover-bridge",
+    "built": {
+      "by": "SIGF",
+      "commit": "711015afa67ab25c7b9597c68038718d1cef322e",
+      "builder": "AWS EC2 i-0ce16aee59cfee816 (c6i.2xlarge, Windows Server 2022, eu-west-1 default VPC, no inbound, SSM only; terminated after the build); llvm-mingw 20260922 ucrt x86_64 (sha256 e3ad77d1...7666) via upstream tools/build_native.py, JDK Temurin 25 + upstream Gradle wrapper (Loom 1.18.2), Go 1.27.1 for the SIGF shim",
+      "artifacts": {
+        "dinput8.dll": "a5f76a4cf7036e6f7b63b0643623a14becfeea8a56190b01fde7fd8fe7fdecf9",
+        "er-bridge-0.3.0.jar": "671e9fc1ed1f4dca90eb2c84ec2bfc4cee2dd6d8d018c0b3b8516d07224ca164",
+        "erbridge_core.dll": "3bf32b117bfa3015012a35e8cc67c0d31f23bcfc4c6ec8f598b86ef2e6e31f63",
+        "LICENSE": "1f44284b48a2a6ae64c627e595d67f6134a6bfee1a5ae69a46cd4fdf28d6f960",
+        "MinHook-LICENSE.txt": "d5c2224982b0b95a16b098a561335fa93f3eaf4d0aa964b7843edb986df78dc8",
+        "mr-launch.exe": "96a8cb72bebdb4b3cf786069d000cf13e6a79a5c525dfebaa78f7480790f0fff",
+        "THIRD_PARTY_NOTICES.md": "8620759a7e09fb94564929f914268328a66e429f255e9cf9dd3d13a74e5f4a8d"
+      }
+    }
+  },
+  "media": {},
+  "built_by": {
+    "author": "siddoff",
+    "authors": [
+      "siddoff",
+      "justbustin (minecraft-crossover-bridge)"
+    ],
+    "packaged_by": "SIGF"
+  },
+  "idea_by": "siddoff",
+  "built_at": "2026-10-07T00:00:00.000Z",
+  "conflicts": [
+    "sigf/eldencraft",
+    "sigf/er-mario",
+    "sigf/eldenkill"
+  ],
+  "status": "beta",
+  "issues": "https://github.com/siddoff/Minecraft-Ring/issues",
+  "notes": [
+    "You need Elden Ring on Steam at App Ver. 1.17.1 (exe 2.7.1.0; other builds unverified) and Minecraft: Java Edition. Two games run at once.",
+    "Offline only: Elden Ring is started without Easy Anti-Cheat and the bridge refuses to load next to it. Never take this game folder online.",
+    "Experimental: terrain, transitions, moving platforms and rendering have rough edges; GPU sharing and window transparency depend on your driver. Single player.",
+    "Install only one Elden Ring mashup at a time (EldenCraft, Minecraft-Ring, ER Mario...): they use the same dinput8.dll and data folders. Restore the other first.",
+    "No upstream release: SIGF built it from the author's source; nobody has played this exact build yet. Beta: report bugs to the author on the upstream issue tracker."
+  ]
+}
